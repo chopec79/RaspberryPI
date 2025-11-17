@@ -1,0 +1,64 @@
+After a card swap
+
+echo "=== 1. Show the Pi's network IP ==="
+hostname -I
+
+echo ""
+echo "=== 2. Ping test from the Pi (network check) ==="
+ping -c 3 8.8.8.8
+
+echo ""
+echo "=== 3. Check VNC service status ==="
+systemctl status vncserver-x11-serviced --no-pager
+
+echo ""
+echo "=== 4. Start VNC service (if not running) ==="
+sudo systemctl start vncserver-x11-serviced
+
+echo ""
+echo "=== 5. Restart VNC service ==="
+sudo systemctl restart vncserver-x11-serviced
+
+echo ""
+echo "=== 6. Check if VNC is listening on port 5900 ==="
+sudo lsof -i :5900
+
+echo ""
+echo "=== 7. Check desktop session type ==="
+echo $XDG_SESSION_TYPE
+
+echo ""
+echo "=== 8. Check if Xorg desktop is running ==="
+ps aux | grep Xorg
+
+echo ""
+echo "=== 9. Force Pi to boot to desktop mode (X11) ==="
+sudo systemctl set-default graphical.target
+
+echo ""
+echo "=== 10. Reboot Pi now ==="
+sudo reboot
+
+
+It prints your real IP
+
+It verifies the network
+
+It verifies VNC service
+
+It restarts VNC
+
+It checks if the port is open
+
+It confirms X11 is running
+
+It forces desktop mode
+
+Then reboots automatically
+
+
+
+
+
+
+
